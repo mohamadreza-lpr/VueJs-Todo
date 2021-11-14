@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" />
+          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+          <title>Todos</title>
+     </head>
+     <body>
+          <div id="app">
+               <div class="container">
+                    <div id="row" class="text-danger text-center">
+                         <h2>لیست کارهای ضروری</h2>
+                    </div>
+                    <div class="row">
+                         <input @keyup.enter="add" v-model="newTodos" class="col-8 offset-2 text-right mt-2 mb-3 form-control" type="text" placeholder="کارهای جدید" />
+                    </div>
+                    <div class="row">
+                         <ul class="list-group col-8 offset-2">
+                              <li v-for="todo, index in todos" class="list-group-item d-flex">
+                                   <button v-if="todo.edit" class="btn border-0 flex-grow-1 text-right shadow-none">
+                                        <input @keyup.enter="updateTodo(todo.title,index)" type="text" class="col-8 form-control text-right mx-auto" placeholder="todo.title" v-model="todo.title" />
+                                   </button>
+                                   <button v-else class="btn border-0 flex-grow-1 text-right shadow-none">
+                                        <span>{{ todo.title }}</span>
+                                   </button>
+
+                                   <button @click="delTodos(index)" class="btn btn-outline-danger border-0 ml-1">
+                                        <span class="fa fa-trash"></span>
+                                   </button>
+                                   <button @click="editTodo(index)" class="btn btn-outline-primary border-0 ml-1">
+                                        <span class="fa fa-edit"></span>
+                                   </button>
+                              </li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+
+          <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+          <script type="text/javascript" src="app.js"></script>
+     </body>
+</html>

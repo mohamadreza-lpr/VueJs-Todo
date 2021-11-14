@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+	<title>پروژه لیست کارها</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link href='https://cdn.fontcdn.ir/Font/Persian/Sahel/Sahel.css' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		body {
+			font-family: Sahel;
+			text-align: right;
+		}
+		.line-through {
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 py-3">
+					<h1>پروژه لیست کارها</h1>
+				</div>
+				<div class="col-8">
+					<input @keyup.enter="addTodo" v-model="newTodo" type="text" class="form-control mb-3" placeholder="افزودن کار جدید" name="">
+				</div>
+				<div class="col-6">
+					<ul class="list-group pr-0">
+						<li v-for="todo, index in todos" class="list-group-item d-flex align-items-center">
+							<button v-if="todo.edit" class="btn border-0 flex-grow-1 text-right shadow-none">
+								<input @keyup.enter="updateTodo(todo.title, index)" v-model="todo.title" type="text" class="form-control">
+							</button>
+							<button @click="completeToggle(index)" v-else class="btn border-0 flex-grow-1 text-right shadow-none">
+								<span :class="todo.complete ? 'line-through' : ''">{{todo.title}}</span>
+							</button>
+							<button @click="editTodo(index)" class="btn btn-outline-primary border-0 ml-2">
+								<span class="fa fa-edit"></span>
+							</button>
+							<button @click="delTodo(index)" class="btn btn-outline-danger border-0">
+								<span class="fa fa-trash"></span>
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
